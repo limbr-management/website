@@ -1,0 +1,8 @@
+# If someone comes here with HTTP, redirect to HTTPS
+RewriteEngine On
+RewriteCond %{HTTPS} off
+RewriteRule (.*) https://%{HTTP_POST}%{REQUEST_URI} [R=301,L]
+
+# Strip off www if they came that way
+RewriteCond %{HTTP_HOST} ^www.limbr.management$ [NC]
+RewriteRule ^(.*)$ https://limbr.management/$1 [R=301,L]
